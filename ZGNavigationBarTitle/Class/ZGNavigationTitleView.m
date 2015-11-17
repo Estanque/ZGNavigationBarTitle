@@ -96,7 +96,8 @@
 
 - (float)offsetXTitleWithSubtitle:(BOOL)subtitle inRect:(CGRect)rect
 {
-	float finalCenter = (self.superview.frame.size.width / 2) - (self.frame.origin.x + rect.size.width / 2);
+//	float finalCenter = (self.superview.frame.size.width / 2) - (self.frame.origin.x + rect.size.width / 2);
+    float finalCenter = 0;
 	UILabel *label = [[UILabel alloc] init];
 	label.text = self.navigationBarTitle;
 	label.font = subtitle ? self.navigationBarTitleFontInSubtitleMode : self.navigationBarTitleFont;
