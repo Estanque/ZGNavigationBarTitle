@@ -126,7 +126,7 @@
     if (self.navigationBarSubtitle.length) {
         CGRect titleRect = rect;
         titleRect.origin.y = 4;
-		titleRect.origin.x = [self offsetXTitleWithSubtitle:YES inRect:rect];
+		titleRect.origin.x = MAX(0, [self offsetXTitleWithSubtitle:YES inRect:rect]);
         titleRect.size.height = 20;
         [self.navigationBarTitleFontColor setFill];
 		[self.navigationBarTitle drawInRect:titleRect withAttributes:@{
@@ -137,7 +137,7 @@
         CGRect subtitleRect = rect;
         subtitleRect.origin.y = 24;
         subtitleRect.size.height = rect.size.height - 24;
-		subtitleRect.origin.x = [self offsetXTitleWithSubtitle:YES inRect:rect];
+		subtitleRect.origin.x = MAX(0, [self offsetXTitleWithSubtitle:YES inRect:rect]);
         [self.navigationBarSubtitleFontColor setFill];
 		[self.navigationBarSubtitle drawInRect:subtitleRect withAttributes:@{
 																		  NSForegroundColorAttributeName: self.navigationBarSubtitleFontColor,
@@ -149,7 +149,7 @@
         CGRect titleRect = rect;
         titleRect.origin.y = (rect.size.height - 24.f) / 2.f;
         titleRect.size.height = 24.f;
-		titleRect.origin.x = [self offsetXTitleWithSubtitle:NO inRect:rect];;
+		titleRect.origin.x = MAX(0, [self offsetXTitleWithSubtitle:NO inRect:rect]);
         [self.navigationBarTitleFontColor setFill];
 		[self.navigationBarTitle drawInRect:titleRect withAttributes:@{
 																	   NSForegroundColorAttributeName: self.navigationBarTitleFontColor,
