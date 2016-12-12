@@ -62,36 +62,32 @@
 
 - (void)setNavigationBarTitle:(NSString *)navigationBarTitle
 {
-    if (![_navigationBarTitle isEqualToString:navigationBarTitle]) {
-        _navigationBarTitle = navigationBarTitle;
-        [self.contentView setNeedsDisplay];
-    }
+    _navigationBarTitle = navigationBarTitle;
+    [self.contentView setNeedsDisplay];
 }
 
 - (void)setNavigationBarSubtitle:(NSString *)navigationBarSubtitle
 {
-    if (![_navigationBarSubtitle isEqualToString:navigationBarSubtitle]) {
-        if (navigationBarSubtitle.length && !_navigationBarSubtitle.length) {
-            CATransition *transition = [CATransition animation];
-            transition.duration = 0.4f;
-            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-            transition.type = kCATransitionPush;
-            transition.subtype = kCATransitionFromTop;
-            [transition setValue:(id) kCFBooleanFalse forKey:kCATransitionFade];
-            [self.contentView.layer addAnimation:transition forKey:nil];
-        }
-        else if (!navigationBarSubtitle.length && _navigationBarSubtitle.length) {
-            CATransition *transition = [CATransition animation];
-            transition.duration = 0.4f;
-            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-            transition.type = kCATransitionPush;
-            transition.subtype = kCATransitionFromBottom;
-            [transition setValue:(id) kCFBooleanFalse forKey:kCATransitionFade];
-            [self.contentView.layer addAnimation:transition forKey:nil];
-        }
-        _navigationBarSubtitle = navigationBarSubtitle;
-        [self.contentView setNeedsDisplay];
+    if (navigationBarSubtitle.length && !_navigationBarSubtitle.length) {
+        CATransition *transition = [CATransition animation];
+        transition.duration = 0.4f;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.type = kCATransitionPush;
+        transition.subtype = kCATransitionFromTop;
+        [transition setValue:(id) kCFBooleanFalse forKey:kCATransitionFade];
+        [self.contentView.layer addAnimation:transition forKey:nil];
     }
+    else if (!navigationBarSubtitle.length && _navigationBarSubtitle.length) {
+        CATransition *transition = [CATransition animation];
+        transition.duration = 0.4f;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.type = kCATransitionPush;
+        transition.subtype = kCATransitionFromBottom;
+        [transition setValue:(id) kCFBooleanFalse forKey:kCATransitionFade];
+        [self.contentView.layer addAnimation:transition forKey:nil];
+    }
+    _navigationBarSubtitle = navigationBarSubtitle;
+    [self.contentView setNeedsDisplay];
 }
 
 - (float)offsetXTitleWithSubtitle:(BOOL)subtitle inRect:(CGRect)rect
