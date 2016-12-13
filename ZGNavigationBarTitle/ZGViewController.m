@@ -11,6 +11,7 @@
 
 @interface ZGViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *navigationSubtitle;
+@property (weak, nonatomic) IBOutlet UITextField *navigationTitle;
 @end
 
 @implementation ZGViewController
@@ -23,14 +24,18 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t) (delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
     {
-        self.title = @"World";
+        if (self.navigationController.viewControllers.count > 1) {
+            self.navigationItem.rightBarButtonItem = nil;
+        }
+        
+        self.title = @"Hello world!";
     });
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+//MARK: - IBActions
+
+- (IBAction)updateTitle:(id)sender {
+    self.title = self.navigationTitle.text;
 }
 
 - (IBAction)updateSubtitle:(id)sender
@@ -42,6 +47,11 @@
 {
     self.navigationSubtitle.text = @"";
     self.subtitle = nil;
+}
+
+- (IBAction)clearTitle:(id)sender {
+    self.navigationTitle.text = @"";
+    self.title = nil;
 }
 
 - (IBAction)nextViewController:(id)sender
